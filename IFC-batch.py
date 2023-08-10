@@ -9,7 +9,7 @@ import ifcopenshell.validate
 
 
 #Checking data from multiple IFC models. 
-#Imports IFC files from the input path, and exports a summary report to the output csv, now inclusive validity check.
+#Imports IFC files from the input path, and exports a summary report to the output csv, now including validity check.
 
 path = 'C:\\path\\to\\ifc\files\\'     #Input path
 output = 'output.csv'                  #Output filepath 
