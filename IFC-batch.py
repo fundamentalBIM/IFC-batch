@@ -10,7 +10,7 @@ from rich import print
 #Checking data from multiple IFC models. 
 #Imports IFC files from the input path. It does a validity check, and exports a summary report to the output csv.
 
-path = 'C:\\users\\dansi\\downloads\\load\\'     #Input path
+path = 'path'     #Input path
 output = 'output.csv'                  #Output filepath 
 
 #remove old csv
