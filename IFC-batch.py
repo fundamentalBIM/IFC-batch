@@ -7,10 +7,8 @@ from pprint import pprint
 import ifcopenshell.validate
 from rich import print
 
-
-
 #Checking data from multiple IFC models. 
-#Imports IFC files from the input path, and exports a summary report to the output csv, now inclusive validity check.
+#Imports IFC files from the input path. It does a validity check, and exports a summary report to the output csv.
 
 path = 'C:\\users\\dansi\\downloads\\load\\'     #Input path
 output = 'output.csv'                  #Output filepath 
@@ -38,7 +36,7 @@ with open(output,"w",newline="") as csvfile:
     writer=csv.DictWriter(csvfile,headernames)
     writer.writeheader()
     
-    print("Loading "+str(len(files))+" files -> Displaying csv headers")
+    print("Loading "+str(len(files))+" files -> Displaying csv headers, outputting to "+output)
     
     pprint(headernames)
     fext = ''    
@@ -47,12 +45,13 @@ for file in files:
     fext = ext[1]
     if ext[1] == '.ifc':
         start = time.time() #Timing load time for the data; Start
-        model = ifcopenshell.open(path+file)
+        model = ifcopenshell.open(path+file) #Load IFC-file
         json_logger = ifcopenshell.validate.json_logger()
         ifcopenshell.validate.validate(model, json_logger)
         if len(json_logger.statements) != 0:
-            print(json_logger.statements)
+            print(json_logger.statements) #Print error msg from validity check
         
+        #Get IFC data
         project = model.by_type('IfcProject')[0]
         site = model.by_type('IfcSite')[0]
         building = model.by_type('IfcBuilding')[0]        
@@ -65,7 +64,7 @@ for file in files:
         loadt = f'{loadt:.2f}'
         file_stats = os.stat(path+file)
         filesize = file_stats.st_size / (1024 * 1024)
-        print(file+" ("+f'{filesize:.2f}'+"mb @ "+loadt+"s)")
+        print(file+" ("+f'{filesize:%.2f}'+"mb @ "+loadt+"s)")
         
         app_full_name = ''
         app_version = ''
