@@ -43,7 +43,7 @@ with open(output,"w",newline="") as csvfile:
 for file in files:
     ext = os.path.splitext(file)
     fext = ext[1]
-    if ext[1] == '.ifc':
+    if fext == '.ifc':
         start = time.time() #Timing load time for the data; Start
         model = ifcopenshell.open(path+file) #Load IFC-file
         json_logger = ifcopenshell.validate.json_logger()
