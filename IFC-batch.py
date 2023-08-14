@@ -5,13 +5,14 @@ import time
 import io
 from pprint import pprint
 import ifcopenshell.validate
+from rich import print
 
 
 
 #Checking data from multiple IFC models. 
-#Imports IFC files from the input path, and exports a summary report to the output csv, now including validity check.
+#Imports IFC files from the input path, and exports a summary report to the output csv, now inclusive validity check.
 
-path = 'C:\\path\\to\\ifc\files\\'     #Input path
+path = 'C:\\users\\dansi\\downloads\\load\\'     #Input path
 output = 'output.csv'                  #Output filepath 
 
 #remove old csv
